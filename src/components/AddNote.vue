@@ -10,6 +10,11 @@
 <script>
 export default {
   name: 'AddNote',
+  data() {
+    return {
+      title: ''
+    }
+  },
   methods: {
     addNote() {
       const newNote = {

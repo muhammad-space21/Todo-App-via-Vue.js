@@ -25,13 +25,13 @@ export default {
     padding: 0;
   }
   .button-add {
-      flex: 2;
-      background-color: #2DCC70;
-      color: white;
-      font-size: 12px;
-      border-radius: 5px;
-      height: 40px;
-      border: 2px solid #2DCC70;
-      margin-right: 20px;
+    flex: 2;
+    background-color: #2DCC70;
+    color: white;
+    font-size: 12px;
+    border-radius: 5px;
+    height: 40px;
+    border: 2px solid #2DCC70;
+    margin-right: 20px;
   }
 </style>

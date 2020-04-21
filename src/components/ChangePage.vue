@@ -1,28 +1,44 @@
 <template>
   <div class="change-page">
-    <AddNote v-on:add-todo="addNote" />
-    <Note />
+    <AddNote @add-note="addNote" />
+    <Note v-if="addnote" :title="curNote" @close="closeNote"/>
   </div>
 </template>
 
 <script>
 import AddNote from '../components/AddNote.vue'
 import Note from '../components/Notes.vue'
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   name: 'ChangePage',
   components: {
     AddNote,
     Note
   },
+  data() {
+    return {
+      addnote: false,
+      notes: [],
+      curNote: ''
+    }
+  },
   methods: {
+    closeNote() {
+      this.addnote = false
+    },
     addNote(newNote) {
       const { title } = newNote;
-      axios.post('https://jsonplaceholder.typicode.com/todos', {
-        title
-      })
-        .then(res => this.notes = [...this.notes, res.data])
-        .catch(err => console.log(err));
+      this.addnote = true
+      this.notes.push(title)
+      this.curNote = title
+      // axios.post('https://jsonplaceholder.typicode.com/todos', {
+      //   title
+      // })
+      //   .then(res => {
+          
+      //     this.notes = [...this.notes, res.data]
+      //     })
+      //   .catch(err => console.log(err));
     }
   }
 }

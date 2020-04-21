@@ -1,9 +1,10 @@
 <template>
   <div class="note-component">
     <div class="note-body">
-      <h1>Note-Name</h1>
+      <h1>{{title}}</h1>
       <AddTodo v-on:add-todo="addTodo" />
       <TodoList v-bind:todos="todos" v-on:del-todo="deleteTodo" />
+      <span class="x_btn" @click="onExit">X</span> 
     </div>
   </div>
 </template>
@@ -14,6 +15,7 @@ import axios from 'axios'
 import AddTodo from '../components/AddTodos'
 
 export default {
+  props: ['title'],
   name: 'Notes',
   components: {
     TodoList,
@@ -26,6 +28,9 @@ export default {
     }
   },
   methods: {
+    onExit() {
+      this.$emit("close");
+    },
     deleteTodo(id) {
       axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
         // eslint-disable-next-line no-unused-vars
@@ -61,6 +66,7 @@ export default {
   }
 
   .note-body {
+    position: relative;
     width: 100%;
     height: 100%;
   }
@@ -71,5 +77,10 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px; 
     text-align: center;
+  }
+  .x_btn {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 </style>
